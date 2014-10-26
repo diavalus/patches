@@ -1,0 +1,20 @@
+diff --git a/status.c b/status.c.new
+index 18f0a1b..b17eb5c 100644
+--- a/status.c
++++ b/status.c.new
+@@ -111,8 +111,13 @@ print_status(struct mpd_connection *conn)
+ 
+ 	printf("consume: ");
+ 	if (mpd_status_get_consume(status))
+-		printf("on \n");
+-	else printf("off\n");
++		printf("on   ");
++	else printf("off   ");
++
++  printf("bitrate: ");
++  if (mpd_status_get_kbit_rate(status))
++    printf("%3ikbps\n", mpd_status_get_kbit_rate(status));
++  else printf("off\n");
+ 
+ 	if (mpd_status_get_error(status) != NULL)
+ 		printf("ERROR: %s\n",
